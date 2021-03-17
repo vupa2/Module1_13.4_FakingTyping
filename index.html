@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="vn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>[*Bài tập] Ứng dụng vui Faking Textarea on Typing</title>
+  <style>
+    label {
+      font-size: 30px;
+      display: block;
+      font-weight: bold;
+      margin: 15px 0;
+    }
+  </style>
+</head>
+<body>
+<label for="typing">Type anthing slowly</label>
+<textarea name="typing" id="typing" cols="30" rows="10"></textarea>
+
+<script>
+  const textArray = 'Faking Textarea đơn giản';
+  const typingArea = document.querySelector('#typing');
+  
+  typingArea.addEventListener('keydown', printText);
+  
+  function printText() {
+      let currentLength = typingArea.value.length;
+      console.log(currentLength);
+      
+      let temp = '';
+      if (currentLength <= textArray.length) {
+        temp = textArray.slice(0, currentLength);
+      } else {
+        temp = '';
+      }
+      
+      typingArea.value = temp;
+      setTimeout("printText()", 1);
+      
+  }
+</script>
+</body>
+</html>
